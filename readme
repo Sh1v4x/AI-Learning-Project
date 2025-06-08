@@ -1,0 +1,191 @@
+### AI Learning Project - Digit Recognition
+
+## Overview
+
+AI Learning Project is an interactive educational platform designed to teach the fundamentals of neural networks and machine learning through hands-on digit recognition. This project allows users to draw digits, train models in real-time, visualize neural networks, and understand the inner workings of AI.
+
+Built with Next.js, TensorFlow.js, and modern web technologies, this application provides a complete learning environment for AI concepts without requiring any installation or complex setup.
+
+## Features
+
+### 🎓 Educational Components
+
+- **Interactive Training**: Draw digits and train your neural network in real-time
+- **Comprehensive Documentation**: Learn AI concepts with detailed explanations
+- **Visual Network Representation**: See your neural network in action with stunning visualizations
+
+### 🧠 AI Capabilities
+
+- **Real-time Digit Recognition**: Draw and get instant predictions
+- **Model Management**: Save, load, compare, and export trained models
+- **Performance Analysis**: Detailed metrics and comparisons between models
+
+### 🛠️ Technical Features
+
+- **TensorFlow.js Integration**: Train and run models directly in the browser
+- **Local Storage Management**: Intelligent storage optimization for models
+- **Responsive Design**: Works on desktop and tablet devices
+
+## Technologies Used
+
+- **Frontend**: Next.js 14 (App Router), React 18, TypeScript
+- **UI**: Tailwind CSS, shadcn/ui components
+- **AI**: TensorFlow.js
+- **Data Visualization**: SVG animations, Canvas API
+- **Storage**: Browser LocalStorage (with Supabase integration ready)
+
+## Installation
+
+### Prerequisites
+
+- Node.js 18.0.0 or higher
+- npm or yarn
+
+### Setup Instructions
+
+1. Clone the repository:
+
+```shellscript
+git clone https://github.com/yourusername/ai-learning-project.git
+cd ai-learning-project
+```
+
+2. Install dependencies:
+
+```shellscript
+npm install
+# or
+yarn install
+```
+
+3. Start the development server:
+
+```shellscript
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser and navigate to `http://localhost:3000`
+
+## Project Structure
+
+```plaintext
+ai-learning-project/
+├── app/                      # Next.js App Router pages
+│   ├── documentation/        # AI concepts documentation
+│   ├── models/               # Model management interface
+│   ├── prediction/           # Digit prediction page
+│   ├── training/             # Model training interface
+│   ├── visualization/        # Neural network visualization
+│   └── layout.tsx            # Root layout with navigation
+├── components/               # React components
+│   ├── drawing-canvas.tsx    # Canvas for digit drawing
+│   ├── model-*.tsx           # Model management components
+│   ├── training-*.tsx        # Training components
+│   └── ui/                   # UI components (shadcn)
+├── lib/                      # Utility functions
+│   ├── supabase.ts           # Supabase client configuration
+│   └── utils.ts              # Helper functions
+├── scripts/                  # Database scripts
+│   └── create-tables.sql     # SQL schema for Supabase
+├── public/                   # Static assets
+├── next.config.js            # Next.js configuration
+└── package.json              # Project dependencies
+```
+
+## Usage Guide
+
+### Training a Model
+
+1. Navigate to the **Training** page
+2. Draw digits (0-9) on the canvas
+3. Label each drawing with the correct digit
+4. Collect at least 10-20 examples of each digit
+5. Configure training parameters (epochs, model name)
+6. Click "Train Model" to start the training process
+7. Monitor training progress and metrics in real-time
+
+### Testing Predictions
+
+1. Navigate to the **Prediction** page
+2. Draw a digit on the canvas
+3. The model will automatically predict the digit
+4. View confidence scores for each possible digit
+5. Try different drawing styles to test model robustness
+
+### Managing Models
+
+1. Navigate to the **Models** page
+2. View all saved models with their performance metrics
+3. Load, export, or delete models as needed
+4. Compare multiple models to identify the best performer
+5. Use the storage manager to optimize space usage
+
+### Visualizing Neural Networks
+
+1. Navigate to the **Visualization** page
+2. Select a model to visualize
+3. Draw a digit to see the network activate in real-time
+4. Observe neuron activations and data flow
+5. Analyze detailed prediction metrics
+
+## Advanced Configuration
+
+### Database Integration
+
+The project is prepared for Supabase integration. To enable cloud storage:
+
+1. Create a Supabase project
+2. Run the SQL script in `scripts/create-tables.sql`
+3. Add your Supabase credentials to environment variables:
+
+```plaintext
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+### Customizing the Neural Network
+
+You can modify the network architecture in `app/training/page.tsx`:
+
+```typescript
+const model = tf.sequential({
+  layers: [
+    tf.layers.flatten({ inputShape: [28, 28] }),
+    tf.layers.dense({ units: 128, activation: "relu" }), // Change units or activation
+    tf.layers.dropout({ rate: 0.2 }), // Adjust dropout rate
+    tf.layers.dense({ units: 10, activation: "softmax" }),
+  ],
+});
+```
+
+## Performance Considerations
+
+- **Browser Storage**: Models are stored in localStorage, which has a limit of ~5MB
+- **Training Time**: Training with many epochs may take time, especially on mobile devices
+- **Memory Usage**: Large models or datasets may cause performance issues
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [TensorFlow.js](https://www.tensorflow.org/js) for the machine learning capabilities
+- [Next.js](https://nextjs.org/) for the React framework
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [shadcn/ui](https://ui.shadcn.com/) for UI components
+- The MNIST dataset creators for the inspiration
+
+Made with ❤️ for AI education
